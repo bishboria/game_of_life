@@ -45,16 +45,17 @@ describe "Game of Life" do
 
   context "Counting shared neighbours" do
     context "with a cell at 1,1" do
+      def counts(cell)
+        counts = neighbour_counts([[1,1]])
+        counts[cell]
+      end
+
       it "0,0 is counted once" do
-        all_life = [[1,1]]
-        counts = neighbour_counts(all_life)
-        counts[[0,0]].should == 1
+        counts([0,0]).should == 1
       end
 
       it "0,1 is counted once" do
-        all_life = [[1,1]]
-        counts = neighbour_counts(all_life)
-        counts[[0,1]].should == 1
+        counts([0,1]).should == 1
       end
     end
 
@@ -75,6 +76,26 @@ describe "Game of Life" do
         all_life = [[1,0],[1,2]]
         counts = neighbour_counts(all_life)
         counts[[2,1]].should == 2
+      end
+    end
+  end
+
+  context "The Rules" do
+    context "Given a living cell" do
+      it "with fewer than two living neighbours dies" do
+        alive_next_generation(1).should be_false
+      end
+
+      it "with two living neighbours lives" do
+        alive_next_generation(2).should be_true
+      end
+
+      it "with three living neighbours lives" do
+        alive_next_generation(3).should be_true
+      end
+
+      it "with four living neighbours dies" do
+        alive_next_generation(4).should be_false
       end
     end
   end

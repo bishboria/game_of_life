@@ -17,3 +17,8 @@ def neighbour_counts all_life
   end
   counts
 end
+
+def alive_next_generation neighbour_count
+  return true if neighbour_count == 2 or neighbour_count == 3
+  false
+end
