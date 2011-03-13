@@ -18,7 +18,11 @@ def neighbour_counts all_life
   counts
 end
 
-def alive_next_generation neighbour_count
-  return true if neighbour_count == 2 or neighbour_count == 3
+def alive_next_generation neighbour_count, alive_now=true
+  return true if (neighbour_count == 2 and alive_now) or neighbour_count == 3
   false
+end
+
+def evolve all_life
+  []
 end

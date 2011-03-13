@@ -98,5 +98,21 @@ describe "Game of Life" do
         alive_next_generation(4).should be_false
       end
     end
+
+    context "Given a dead cell" do
+      it "with exactly three living neighbours becomes alive" do
+        alive_next_generation(3, false).should be_true
+      end
+
+      it "with two living neighbours stays dead" do
+        alive_next_generation(2, false).should be_false
+      end
+    end
+  end
+  
+  context "Evolving life" do
+    it "a single living cell does not survive to the next generation" do
+      evolve([[1,1]]).should be_empty
+    end
   end
 end
