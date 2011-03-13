@@ -7,3 +7,13 @@ def neighbours_of row, column
   end
   neighbours - [[row,column]]
 end
+
+def neighbour_counts all_life
+  counts = Hash.new 0
+  all_life.each do |row, column|
+    neighbours_of(row, column).each do |neighbour|
+      counts[neighbour] += 1
+    end
+  end
+  counts
+end
