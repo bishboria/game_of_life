@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "Game of Life" do
   describe "Working out neighbours" do
-    context "a cell located at position 1,1" do
+    context "A cell located at position 1,1" do
       it "has a neighbour at 0,0" do
         neighbours_of(1,1).should include([0,0])
       end
@@ -36,7 +36,7 @@ describe "Game of Life" do
       end
     end
 
-    context "a cell located at 1,2" do
+    context "A cell located at 1,2" do
       it "has neighbours located in the 8 cells surrounding it" do
         neighbours_of(1,2).should == [[0,1],[0,2],[0,3],[1,1],[1,3],[2,1],[2,2],[2,3]]
       end
@@ -44,7 +44,7 @@ describe "Game of Life" do
   end
 
   describe "Counting shared neighbours" do
-    context "with a cell at 1,1" do
+    context "With a cell at 1,1" do
       def count(cell)
         counts = neighbour_counts([[1,1]])
         counts[cell]
@@ -59,7 +59,7 @@ describe "Game of Life" do
       end
     end
 
-    context "with cells at 1,0 and 1,2" do
+    context "With cells at 1,0 and 1,2" do
       def count cell
         counts = neighbour_counts([[1,0],[1,2]])
         counts[cell]
@@ -80,7 +80,7 @@ describe "Game of Life" do
   end
 
   describe "The Rules" do
-    context "Given a living cell" do
+    context "A living cell" do
       it "with fewer than two living neighbours dies" do
         alive_next_generation(1).should be_false
       end
@@ -98,7 +98,7 @@ describe "Game of Life" do
       end
     end
 
-    context "Given a dead cell" do
+    context "A dead cell" do
       it "with exactly three living neighbours becomes alive" do
         alive_next_generation(3, false).should be_true
       end
