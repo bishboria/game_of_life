@@ -113,6 +113,21 @@ describe "Game of Life" do
   context "Evolving life" do
     it "a single living cell does not survive to the next generation" do
       evolve([[1,1]]).should be_empty
+      evolve( [[1,1]] ).should be_empty
+    end
+
+    it "a 2x2 arrangement of cells stays the same" do
+      static_life = [[0,0],[0,1],[1,0],[1,1]]
+      evolve(static_life).should =~ static_life
+    end
+
+    it "a 2x2 arrangement missing one cell evolves to a 2x2" do
+      initial_life = [[0,0],[0,1],[1,0]]
+      evolve(initial_life).should =~ initial_life + [[1,1]]
+    end
+
+    it "a 1x3 life form evolves to a 3x1 life form" do
+      evolve( [[1,1],[1,2],[1,3]] ).should =~ [[0,2],[1,2],[2,2]]
     end
   end
 end

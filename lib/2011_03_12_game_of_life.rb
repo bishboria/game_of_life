@@ -23,6 +23,12 @@ def alive_next_generation neighbour_count, alive_now=true
   false
 end
 
-def evolve all_life
-  []
+def evolve current_life
+  next_generation = []
+  potential_life = neighbour_counts current_life
+  potential_life.each do |cell, count|
+    alive_now = current_life.include? cell
+    next_generation << cell if alive_next_generation count, alive_now
+  end
+  next_generation
 end
